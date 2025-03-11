@@ -1,5 +1,10 @@
 # ZStore Plugin
 
+<div align="center">
+  <img src="assets/images/logo.png" alt="ZStore Plugin Logo" width="350px">
+</div>
+
+<!-- logo of the plugin located in assets/images/logo.png  -->
 ## Adding New Settings Fields
 
 Follow these steps to add a new settings field to the plugin:
