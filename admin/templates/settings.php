@@ -30,6 +30,56 @@
                         </td>
                     </tr>
                     <tr>
+                        <th><label for="woocommerce_key">Woocommerce Key</label></th>
+                        <td>
+                            <input type="text" id="woocommerce_key" name="woocommerce_key" class="regular-text" 
+                                value="<?php echo esc_attr($settings['store_settings']['woocommerce_key'] ?? ''); ?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="woocommerce_secret">Woocommerce Secret</label></th>
+                        <td>
+                            <input type="text" id="woocommerce_secret" name="woocommerce_secret" class="regular-text" 
+                                value="<?php echo esc_attr($settings['store_settings']['woocommerce_secret'] ?? ''); ?>">
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <th><label for="address">Address</label></th>
+                        <td>
+                            <input type="text" id="address" name="address" class="regular-text" 
+                                value="<?php echo esc_attr($settings['store_settings']['address'] ?? ''); ?>">
+                        </td>
+                    </tr>
+
+                    <!-- phone -->
+                    <tr>
+                        <th><label for="phone">Phone</label></th>
+                        <td>
+                            <input type="text" id="phone" name="phone" class="regular-text" 
+                                value="<?php echo esc_attr($settings['store_settings']['phone'] ?? ''); ?>">
+                        </td>
+                    </tr>
+
+                    <!-- Whatsapp number -->
+                    <tr>
+                        <th><label for="whatsapp_number">Whatsapp Number</label></th>
+                        <td>
+                            <input type="text" id="whatsapp_number" name="whatsapp_number" class="regular-text" 
+                                value="<?php echo esc_attr($settings['store_settings']['whatsapp_number'] ?? ''); ?>">
+                    </tr>
+
+                    <!-- Privacy policy link field -->
+                    <tr>
+                        <th><label for="privacy_policy_link">Privacy Policy Link</label></th>
+                        <td>
+                            <input type="text" id="privacy_policy_link" name="privacy_policy_link" class="regular-text" 
+                                value="<?php echo esc_attr($settings['store_settings']['privacy_policy_link'] ?? ''); ?>">
+                        </td>
+                    </tr>
+
+                    <tr>
                         <th><label>Store Logo</label></th>
                         <td>
                             <div class="logo-upload">
@@ -109,10 +159,39 @@
                 <table class="form-table">
                     <?php
                     $fields = array(
+                        // Personal Information
                         'email' => 'Email Address',
                         'first_name' => 'First Name',
                         'last_name' => 'Last Name',
-                        'phone' => 'Phone Number'
+                        'phone' => 'Phone Number',
+                        
+                        // Address Information
+                        'address_line1' => 'Address Line 1',
+                        'address_line2' => 'Address Line 2',
+                        'city' => 'City',
+                        'state' => 'State/Province',
+                        'postal_code' => 'Postal Code/ZIP',
+                        'country' => 'Country',
+                        
+                        // Billing Information
+                        'company' => 'Company Name',
+                        
+                        // Alternative Shipping
+                        'different_shipping' => 'Different Shipping Address',
+                        'shipping_first_name' => 'Shipping First Name',
+                        'shipping_last_name' => 'Shipping Last Name',
+                        'shipping_address_line1' => 'Shipping Address Line 1',
+                        'shipping_address_line2' => 'Shipping Address Line 2',
+                        'shipping_city' => 'Shipping City',
+                        'shipping_state' => 'Shipping State/Province',
+                        'shipping_postal_code' => 'Shipping Postal Code/ZIP',
+                        'shipping_country' => 'Shipping Country',
+                        
+                        // Additional Information
+                        'order_notes' => 'Order Notes',
+                        'create_account' => 'Create Account',
+                        'newsletter_subscription' => 'Newsletter Subscription',
+                        'terms_acceptance' => 'Terms & Conditions Acceptance'
                     );
                     foreach ($fields as $field => $label):
                     ?>

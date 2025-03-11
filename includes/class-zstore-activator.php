@@ -36,5 +36,28 @@ class Zstore_Activator {
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($slides_sql);
         dbDelta($settings_sql);
+        
+        // Initialize default settings if they don't exist
+        $settings_instance = new Zstore_Settings();
+        $default_settings = $settings_instance->get_default_settings();
+        
+        // Check if store_settings exist
+        $existing = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT COUNT(*) FROM $settings_table WHERE setting_key = %s",
+                'store_settings'
+            )
+        );
+        
+        // If settings don't exist, insert default settings
+        if (!$existing) {
+            $wpdb->insert(
+                $settings_table,
+                array(
+                    'setting_key' => 'store_settings',
+                    'setting_value' => wp_json_encode($default_settings)
+                )
+            );
+        }
     }
 } 

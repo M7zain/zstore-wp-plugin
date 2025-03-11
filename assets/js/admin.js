@@ -187,14 +187,23 @@ jQuery(document).ready(function($) {
     $('#zstore-settings-form').on('submit', function(e) {
         e.preventDefault();
         
+        // Ensure all fields are properly collected, with consistent structure
         const settings = {
             store_secret_keys: $('input[name="store_secret_keys"]').val(),
             site_url: $('input[name="site_url"]').val(),
             logo_url: $('input[name="logo_url"]').val(),
+            // Explicitly include all fields, including new ones
+            woocommerce_key: $('#woocommerce_key').val(),
+            woocommerce_secret: $('#woocommerce_secret').val(),
+            // Address field
+            address: $('#address').val(),
+            phone: $('#phone').val(),
+            whatsapp_number: $('#whatsapp_number').val(),
+            privacy_policy_link: $('#privacy_policy_link').val(),
             theme: {
                 colors: {
-                    primary: $('input[name="primary_color"]').val(),
-                    secondary: $('input[name="secondary_color"]').val()
+                    primary: $('input[name="primary_color"]').val() || '#FF5733',
+                    secondary: $('input[name="secondary_color"]').val() || '#33FF57'
                 }
             },
             working_hours: {},
@@ -203,6 +212,9 @@ jQuery(document).ready(function($) {
             },
             checkout_form: {}
         };
+        
+        // Log the settings to confirm all fields are included
+        console.log('Settings to save:', settings);
         
         // Collect working hours
         $('input[name^="working_hours"]').each(function() {

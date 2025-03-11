@@ -29,6 +29,14 @@ class Zstore_API {
                     'validate_callback' => function($param) {
                         return !empty($param);
                     }
+                ),
+                'cache_bust' => array(
+                    'required' => false,
+                    'type' => 'string',
+                    'description' => 'Cache busting parameter',
+                    'validate_callback' => function($param) {
+                        return is_string($param);
+                    }
                 )
             )
         ));
@@ -55,11 +63,41 @@ class Zstore_API {
      */
     public function get_settings($request) {
         try {
-            // Get all settings
-            $settings = $this->settings->get_all_settings();
+            // Force refresh of settings by clearing all caches
+            $this->settings->clear_all_caches();
             
-            // Get all slides
-            $slides = $this->slides->get_slides();
+            // Get all settings directly from the database, bypassing cache
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'zstore_settings';
+            $results = $wpdb->get_results(
+                "SELECT setting_key, setting_value FROM {$table_name}"
+            );
+            
+            $settings = array();
+            foreach ($results as $row) {
+                $settings[$row->setting_key] = json_decode($row->setting_value, true);
+            }
+            
+            // Ensure store_settings exists and has default values for missing fields
+            if (!isset($settings['store_settings'])) {
+                $settings['store_settings'] = $this->settings->get_default_settings();
+            } else {
+                // Merge with defaults to ensure all fields exist
+                $defaults = $this->settings->get_default_settings();
+                $settings['store_settings'] = array_replace_recursive($defaults, $settings['store_settings']);
+            }
+            
+            // Get all slides directly from the database
+            global $wpdb;
+            $slides_table = $wpdb->prefix . 'home_slides';
+            $slides = $wpdb->get_results(
+                "SELECT * FROM {$slides_table} ORDER BY slide_order ASC"
+            );
+            
+            $slides = array_map(function($slide) {
+                $slide->slide_data = json_decode($slide->slide_data);
+                return $slide;
+            }, $slides);
             
             // Combine settings and slides
             $response = array(
@@ -69,6 +107,12 @@ class Zstore_API {
                     'slides' => $slides
                 )
             );
+            
+            // Set cache control headers to prevent caching
+            header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+            header('Cache-Control: post-check=0, pre-check=0', false);
+            header('Pragma: no-cache');
+            header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
             
             return new WP_REST_Response($response, 200);
             

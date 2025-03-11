@@ -35,7 +35,76 @@ class Zstore_Settings {
             wp_cache_set($this->cache_key, $settings, $this->cache_group);
         }
         
+        // Ensure store_settings exists and has default values for missing fields
+        if (!isset($settings['store_settings'])) {
+            $settings['store_settings'] = $this->get_default_settings();
+        } else {
+            // Merge with defaults to ensure all fields exist
+            $defaults = $this->get_default_settings();
+            $settings['store_settings'] = array_replace_recursive($defaults, $settings['store_settings']);
+        }
+        
         return $settings;
+    }
+    
+    /**
+     * Clear all possible caches
+     */
+    public function clear_all_caches() {
+        // Clear WordPress object cache
+        wp_cache_delete($this->cache_key, $this->cache_group);
+        
+        // Clear LiteSpeed Cache
+        if (class_exists('LiteSpeed\Purge')) {
+            \LiteSpeed\Purge::purge_all();
+        } else if (function_exists('litespeed_purge_all')) {
+            litespeed_purge_all();
+        }
+        
+        // Clear W3 Total Cache
+        if (function_exists('w3tc_flush_all')) {
+            w3tc_flush_all();
+        }
+        
+        // Clear WP Super Cache
+        if (function_exists('wp_cache_clear_cache')) {
+            wp_cache_clear_cache();
+        }
+        
+        // Clear WP Rocket cache
+        if (function_exists('rocket_clean_domain')) {
+            rocket_clean_domain();
+        }
+        
+        // Clear WP Fastest Cache
+        if (class_exists('WpFastestCache')) {
+            $wpfc = new \WpFastestCache();
+            $wpfc->deleteCache(true);
+        }
+        
+        // Clear Autoptimize cache
+        if (class_exists('autoptimizeCache')) {
+            \autoptimizeCache::clearall();
+        }
+        
+        // Clear Comet Cache
+        if (class_exists('comet_cache')) {
+            \comet_cache::clear();
+        }
+        
+        // Clear Breeze cache
+        if (class_exists('Breeze_Admin')) {
+            $breeze = new \Breeze_Admin();
+            $breeze->breeze_clear_all_cache();
+        }
+        
+        // Force WordPress to refresh its internal cache
+        wp_cache_flush();
+        
+        // Attempt to clear opcache if available
+        if (function_exists('opcache_reset')) {
+            opcache_reset();
+        }
     }
     
     /**
@@ -57,7 +126,8 @@ class Zstore_Settings {
         );
         
         if ($result) {
-            wp_cache_delete($this->cache_key, $this->cache_group);
+            // Clear all caches
+            $this->clear_all_caches();
             return true;
         }
         
@@ -72,6 +142,11 @@ class Zstore_Settings {
             'store_secret_keys' => '',
             'site_url' => get_site_url(),
             'logo_url' => '',
+            'woocommerce_key' => '',
+            'woocommerce_secret' => '',
+            'address' => '',
+            // I added the privacy policy link field and added it to the default settings
+            'privacy_policy_link' => '',
             'theme' => array(
                 'colors' => array(
                     'primary' => '#FF5733',
@@ -97,5 +172,12 @@ class Zstore_Settings {
                 'phone' => true
             )
         );
+    }
+    
+    /**
+     * Clear settings cache
+     */
+    public function clear_cache() {
+        wp_cache_delete($this->cache_key, $this->cache_group);
     }
 } 
