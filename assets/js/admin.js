@@ -53,6 +53,12 @@ jQuery(document).ready(function($) {
         $('textarea[name="description"]').val($slide.find('p').text());
         $('input[name="link"]').val($slide.find('a').attr('href'));
         
+        // Set category dropdown value if it exists
+        const categoryId = $slide.data('category-id');
+        if (categoryId) {
+            $('select[name="category_id"]').val(categoryId);
+        }
+        
         $('#slide-modal').show();
     });
     
@@ -140,6 +146,7 @@ jQuery(document).ready(function($) {
         $('input[name="slide_id"]').val('');
         $('input[name="image_url"]').val('');
         $('.image-preview').empty();
+        $('select[name="category_id"]').val('');
     }
     
     // Initialize color pickers

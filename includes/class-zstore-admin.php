@@ -104,6 +104,7 @@ class Zstore_Admin {
             'title' => sanitize_text_field($_POST['title']),
             'description' => wp_kses_post($_POST['description']),
             'link' => esc_url_raw($_POST['link']),
+            'category_id' => isset($_POST['category_id']) ? absint($_POST['category_id']) : '',
             'order' => intval($_POST['order'])
         );
         
