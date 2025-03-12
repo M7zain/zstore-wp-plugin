@@ -59,5 +59,8 @@ class Zstore_Activator {
                 )
             );
         }
+        
+        // Set transient for welcome page redirect
+        set_transient('zstore_activation_redirect', true, 30);
     }
 } 

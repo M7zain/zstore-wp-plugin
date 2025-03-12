@@ -1,0 +1,667 @@
+/* ZStore Welcome Page Styles */
+
+.zstore-welcome-wrap {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/* Header */
+.zstore-welcome-header {
+    background: linear-gradient(135deg, #216c73 0%, #3a8f96 50%, #dcb670 100%);
+    color: #fff;
+    padding: 50px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.zstore-header-accent {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(220, 182, 112, 0.3) 0%, rgba(220, 182, 112, 0) 70%);
+    border-radius: 50%;
+    top: -150px;
+    right: -50px;
+    z-index: 1;
+}
+
+.zstore-header-accent:after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(220, 182, 112, 0.2) 0%, rgba(220, 182, 112, 0) 70%);
+    border-radius: 50%;
+    bottom: -120px;
+    left: -100px;
+}
+
+.zstore-logo {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.zstore-welcome-header h1 {
+    margin: 0 0 15px;
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #fff;
+}
+
+.zstore-welcome-subtitle {
+    font-size: 18px;
+    margin: 0;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.zstore-version {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* Content */
+.zstore-welcome-content {
+    padding: 40px;
+}
+
+.zstore-welcome-section {
+    margin-bottom: 40px;
+}
+
+.zstore-welcome-section h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.zstore-welcome-section h2 .dashicons {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    color: #216c73;
+}
+
+.zstore-welcome-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+/* Features */
+.zstore-features {
+    display: flex;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.zstore-feature-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.zstore-feature-item {
+    background: #f5f9f9;
+    border-radius: 10px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(33, 108, 115, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.zstore-feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(33, 108, 115, 0.1);
+    border-color: rgba(220, 182, 112, 0.3);
+}
+
+.zstore-feature-item:before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(220, 182, 112, 0.1) 0%, rgba(220, 182, 112, 0) 70%);
+    border-radius: 50%;
+    top: -50px;
+    right: -50px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.zstore-feature-item:hover:before {
+    opacity: 1;
+}
+
+.zstore-feature-item .dashicons {
+    color: #216c73;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.zstore-feature-item:hover .dashicons {
+    transform: scale(1.1);
+}
+
+.zstore-feature-item h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.zstore-feature-item p {
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Getting Started Steps */
+.zstore-getting-started {
+    background: #f5f9f9;
+    padding: 40px;
+    border-radius: 10px;
+    margin: 40px 0;
+}
+
+.zstore-steps {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.zstore-step {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.zstore-step-number {
+    background: #216c73;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.zstore-step-content h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.zstore-step-content p {
+    margin: 0 0 15px;
+    font-size: 15px;
+    color: #666;
+}
+
+.zstore-step-content .button {
+    background: linear-gradient(135deg, #216c73 0%, #2a8b94 100%);
+    border-color: #216c73;
+    color: #fff;
+    padding: 8px 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(33, 108, 115, 0.2);
+}
+
+.zstore-step-content .button:hover {
+    background: linear-gradient(135deg, #185156 0%, #216c73 100%);
+    border-color: #185156;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(33, 108, 115, 0.3);
+}
+
+/* Footer */
+.zstore-welcome-footer {
+    display: flex;
+    gap: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 40px;
+    margin-top: 40px;
+}
+
+.zstore-footer-column {
+    flex: 1;
+}
+
+.zstore-footer-column h3 {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin: 0 0 15px;
+    color: #333;
+}
+
+.zstore-footer-column h3 .dashicons {
+    margin-right: 10px;
+    color: #216c73;
+}
+
+.zstore-footer-column p {
+    margin: 0 0 15px;
+    font-size: 15px;
+    color: #666;
+}
+
+.zstore-footer-column .button {
+    background: #f5f5f5;
+    border-color: #ddd;
+    color: #333;
+}
+
+.zstore-footer-column .button:hover {
+    background: #eaeaea;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 1024px) {
+    .zstore-welcome-header {
+        padding: 40px 20px;
+    }
+    
+    .zstore-welcome-content {
+        padding: 30px;
+    }
+    
+    .zstore-features,
+    .zstore-steps,
+    .zstore-welcome-footer {
+        flex-direction: column;
+    }
+    
+    .zstore-getting-started {
+        padding: 30px;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.zstore-welcome-wrap {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* App Preview Section */
+.zstore-app-preview {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #f5f9f9 0%, #edf7f8 100%);
+    border-radius: 10px;
+    padding: 0;
+    margin: 40px 0;
+    overflow: hidden;
+}
+
+.zstore-mockup-content {
+    flex: 1;
+    padding: 40px;
+}
+
+.zstore-mockup-content h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    color: #333;
+}
+
+.zstore-mockup-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0 0 25px;
+}
+
+.zstore-preview-buttons {
+    margin-top: 20px;
+}
+
+.zstore-preview-buttons .button-primary {
+    background: linear-gradient(135deg, #216c73 0%, #2a8b94 100%);
+    border-color: #216c73;
+    color: #fff;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(33, 108, 115, 0.2);
+}
+
+.zstore-preview-buttons .button-primary:hover {
+    background: linear-gradient(135deg, #185156 0%, #216c73 100%);
+    border-color: #185156;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(33, 108, 115, 0.3);
+}
+
+.zstore-mockup-image {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Phone Mockup */
+.zstore-phone-mockup {
+    width: 260px;
+    height: 530px;
+    background: #111;
+    border-radius: 36px;
+    padding: 10px;
+    box-shadow: 0 25px 50px -12px rgba(33, 108, 115, 0.25);
+    position: relative;
+    overflow: hidden;
+    transform: perspective(800px) rotateY(-5deg);
+    transition: transform 0.5s ease;
+    animation: phoneEnter 1s ease-out forwards;
+}
+
+@keyframes phoneEnter {
+    0% {
+        opacity: 0;
+        transform: perspective(800px) rotateY(-15deg) translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: perspective(800px) rotateY(-5deg) translateX(0);
+    }
+}
+
+.zstore-phone-mockup:hover {
+    transform: perspective(800px) rotateY(0deg);
+}
+
+.zstore-phone-mockup:before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #000;
+    border-radius: 50%;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.zstore-phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+}
+
+.zstore-phone-content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Phone UI Elements */
+.zstore-mock-header {
+    height: 60px;
+    background: #216c73;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.zstore-mock-logo {
+    width: 110px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.zstore-mock-logo:after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+    animation: shimmer 2s infinite;
+    transform: skewX(-20deg);
+}
+
+@keyframes shimmer {
+    0% { left: -30px; }
+    100% { left: 110px; }
+}
+
+.zstore-mock-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.zstore-mock-icons span {
+    width: 22px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.zstore-mock-slider {
+    height: 180px;
+    background: linear-gradient(135deg, #216c73 0%, #dcb670 100%);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.zstore-mock-slider:before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+    animation: slide 3s infinite;
+    transform: skewX(-20deg);
+}
+
+@keyframes slide {
+    0% { left: -150%; }
+    100% { left: 150%; }
+}
+
+.zstore-mock-slider:after {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+}
+
+.zstore-mock-categories {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px 20px;
+}
+
+.zstore-mock-categories span {
+    width: 50px;
+    height: 50px;
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.zstore-mock-categories span:nth-child(1) {
+    background: rgba(33, 108, 115, 0.1);
+}
+
+.zstore-mock-categories span:nth-child(3) {
+    background: rgba(220, 182, 112, 0.2);
+}
+
+.zstore-mock-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 15px;
+}
+
+.zstore-mock-product {
+    width: calc(50% - 5px);
+    height: 140px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    position: relative;
+}
+
+.zstore-mock-product:after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 70%;
+    height: 15px;
+    background: #ddd;
+    border-radius: 3px;
+}
+
+.zstore-mock-product:before {
+    content: '';
+    position: absolute;
+    bottom: 35px;
+    left: 10px;
+    width: 40%;
+    height: 15px;
+    background: #ddd;
+    border-radius: 3px;
+}
+
+.zstore-mock-product:nth-child(odd) {
+    border-top: 3px solid rgba(33, 108, 115, 0.6);
+}
+
+.zstore-mock-product:nth-child(even) {
+    border-top: 3px solid rgba(220, 182, 112, 0.8);
+}
+
+@media screen and (max-width: 1024px) {
+    .zstore-app-preview {
+        flex-direction: column;
+    }
+    
+    .zstore-mockup-content,
+    .zstore-mockup-image {
+        padding: 30px;
+    }
+}
+
+/* Quick Features */
+.zstore-quick-features {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, rgba(33, 108, 115, 0.03) 0%, rgba(220, 182, 112, 0.03) 100%);
+    border-radius: 10px;
+    padding: 25px;
+    gap: 20px;
+    border-top: 3px solid #216c73;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+}
+
+.zstore-quick-feature {
+    flex: 1;
+    text-align: center;
+    padding: 15px 10px;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+}
+
+.zstore-quick-feature:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.zstore-quick-feature .dashicons {
+    display: block;
+    margin: 0 auto 10px;
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    color: #216c73;
+    transition: transform 0.3s ease;
+}
+
+.zstore-quick-feature:nth-child(even) .dashicons {
+    color: #dcb670;
+}
+
+.zstore-quick-feature:hover .dashicons {
+    transform: scale(1.2);
+}
+
+.zstore-quick-feature h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+    .zstore-quick-features {
+        flex-wrap: wrap;
+    }
+    
+    .zstore-quick-feature {
+        flex: 1 0 40%;
+    }
+} 

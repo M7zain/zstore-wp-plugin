@@ -15,24 +15,66 @@ class Zstore_Admin {
         add_action('wp_ajax_save_slide', array($this, 'ajax_save_slide'));
         add_action('wp_ajax_delete_slide', array($this, 'ajax_delete_slide'));
         add_action('wp_ajax_save_settings', array($this, 'ajax_save_settings'));
+        
+        // Show welcome page after activation
+        add_action('admin_init', array($this, 'maybe_redirect_to_welcome'));
+    }
+    
+    /**
+     * Redirect to welcome page after plugin activation
+     */
+    public function maybe_redirect_to_welcome() {
+        // Check if we should redirect to welcome page
+        if (get_transient('zstore_activation_redirect')) {
+            delete_transient('zstore_activation_redirect');
+            // Only redirect if not already on the welcome page and user has sufficient privileges
+            if (!isset($_GET['page']) || $_GET['page'] != 'zstore-welcome') {
+                if (current_user_can('manage_options')) {
+                    wp_safe_redirect(admin_url('admin.php?page=zstore-welcome'));
+                    exit;
+                }
+            }
+        }
     }
     
     /**
      * Add admin menu items
      */
     public function add_admin_menu() {
+        // Set welcome as the main menu page
         add_menu_page(
-            'ZStore Settings',
+            'Welcome to ZStore',
             'ZStore',
             'manage_options',
-            'zstore-settings',
-            array($this, 'render_settings_page'),
+            'zstore-welcome',
+            array($this, 'render_welcome_page'),
             'dashicons-store',
             30
         );
         
+        // Add Welcome as the first submenu to match the main menu item
         add_submenu_page(
+            'zstore-welcome',
+            'Welcome to ZStore',
+            'Welcome',
+            'manage_options',
+            'zstore-welcome',
+            array($this, 'render_welcome_page')
+        );
+        
+        // Add Settings submenu
+        add_submenu_page(
+            'zstore-welcome',
+            'ZStore Settings',
+            'Settings',
+            'manage_options',
             'zstore-settings',
+            array($this, 'render_settings_page')
+        );
+        
+        // Add Slides submenu
+        add_submenu_page(
+            'zstore-welcome',
             'Slides',
             'Slides',
             'manage_options',
@@ -45,12 +87,23 @@ class Zstore_Admin {
      * Enqueue admin scripts and styles
      */
     public function enqueue_admin_scripts($hook) {
-        if (!in_array($hook, array('toplevel_page_zstore-settings', 'zstore_page_zstore-slides'))) {
+        if (!in_array($hook, array('toplevel_page_zstore-welcome', 'zstore_page_zstore-slides', 'zstore_page_zstore-welcome', 'zstore_page_zstore-settings'))) {
             return;
         }
         
         wp_enqueue_media();
         wp_enqueue_style('wp-color-picker');
+        wp_enqueue_style('dashicons');
+        
+        // Enqueue welcome page styles if on the welcome page
+        if ($hook === 'zstore_page_zstore-welcome' || $hook === 'toplevel_page_zstore-welcome') {
+            wp_enqueue_style(
+                'zstore-welcome',
+                ZSTORE_PLUGIN_URL . 'assets/css/welcome.css',
+                array(),
+                ZSTORE_VERSION
+            );
+        }
         
         wp_enqueue_script(
             'zstore-admin',
@@ -79,6 +132,13 @@ class Zstore_Admin {
     public function render_settings_page() {
         $settings = $this->settings->get_all_settings();
         include ZSTORE_PLUGIN_DIR . 'admin/templates/settings.php';
+    }
+    
+    /**
+     * Render welcome page
+     */
+    public function render_welcome_page() {
+        include ZSTORE_PLUGIN_DIR . 'admin/templates/welcome.php';
     }
     
     /**
